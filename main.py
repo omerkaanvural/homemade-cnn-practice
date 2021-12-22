@@ -32,7 +32,7 @@ def resize_image(img):
         img = rescale(img, 256/y, anti_aliasing=True)
         gap = np.zeros(shape=(256, gap_size))
 
-        return resize(np.vstack((gap, img, gap)), new_size)
+        return resize(np.hstack((gap, img, gap)), new_size)
 
 
 def main():
@@ -52,7 +52,8 @@ def main():
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=0)
 
     # testing resize func
-    img = resize_image(io.imread(x_train[1], as_gray=True))
+    img = resize_image(io.imread(x_train[11], as_gray=True))
+    #img = io.imread(x_train[11], as_gray=True)
     io.imshow(img)
     plt.show()
     print(img.shape)
@@ -62,4 +63,6 @@ if __name__ == '__main__':
     main()
 
 
-
+# numpy array normalization
+# norm = np.linalg.norm(array)
+# normal_array = array/norm
